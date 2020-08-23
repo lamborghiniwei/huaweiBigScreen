@@ -216,7 +216,7 @@ export default {
           }
           .go-speed {
             position: relative;
-            z-index: 9999;
+            z-index: 3000;
             width: 1.5rem;
             height: .455rem;
             margin: -.45rem auto 0;
