@@ -11,6 +11,7 @@ import echarts from "echarts";
 //     name: "噪音检测"
 //   }
 // ];
+let clientWidth = document.body.clientWidth;
 const tempArr = [85, 82, 93, 95, 98, 96, 82, 83, 87, 90];
 var color = new echarts.graphic.LinearGradient(0, 0, 1, 0, [
   {
@@ -148,6 +149,7 @@ const options = {
         color: "#d8c26f",
         fontFamily: "DINBold",
         fontWeight: "700",
+        fontSize: clientWidth/1920*40,
         rich: rich,
         offsetCenter: ["0%", "55%"]
       },
@@ -159,7 +161,7 @@ const options = {
         show: true,
         lineStyle: {
           color: colorSet,
-          width: 25,
+          width: clientWidth/1920*24,
           // shadowBlur: 15,
           // shadowColor: '#B0C4DE',
           shadowOffsetX: 0,
@@ -240,7 +242,7 @@ const options = {
       },
       axisLabel: {
         color: "rgba(255,255,255,0.8)",
-        fontSize: 18
+        fontSize: clientWidth/1920*18
       }, //刻度节点文字颜色
       pointer: {
         show: false

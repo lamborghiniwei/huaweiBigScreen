@@ -387,15 +387,15 @@ export default {
             }
             .rank-title {
               margin: 0 auto;
-              width: 0.96rem;
+              // width: 0.96rem;
               height: 0.24rem;
               line-height: 0.24rem;
               font-size: 0.12rem;
               text-align: center;
               font-weight: 400;
               color: #fff;
-              background: url("../assets/img/rank_title.png") no-repeat;
-              background-size: 100% 100%;
+              background: url("../assets/img/rank_title.png");
+              // background-size: 100% 100%;
             }
             .rank-title2 {
               color: #3c94fa;

@@ -115,9 +115,13 @@ body {
   background: #031d2a;
 }
 .loading {
-  position: absolute;
+  // position: absolute;
+  // left: 50%;
+  // top: 40%;
+  // transform: translate(-50%, -50%);
+  position: fixed;
   left: 50%;
-  top: 40%;
+  top: 50%;
   transform: translate(-50%, -50%);
   .loading-gif {
     width: 1.3rem;
