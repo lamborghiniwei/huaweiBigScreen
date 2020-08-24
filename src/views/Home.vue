@@ -8,12 +8,6 @@
     <div class="main-box">
       <div class="video-speed-box">
         <div class="video-box">
-          <div class="btns-box">
-            <div class="btn-com add"></div>
-            <div class="btn-com jian"></div>
-            <div class="btn-com home"></div>
-            <div class="btn-com huan"></div>
-          </div>
         </div>
         <div class="speed-box">
           <div class="top-title top-title4">速率测试</div>
@@ -24,27 +18,35 @@
             <div class="go-speed" @click='handleSpeed'></div>
           </div>
           <div class="speed-message">
-              <div class="speed1">
+              <!-- <div class="speed1">
                 <div>测试速率信息</div>
                 <div class="speed1-number-box">
                    <span class="number-style">{{showNumber}}</span>
                    <span class="number-unit">M/S</span>
                 </div>
-              </div>
+              </div> -->
               <div class="speed2">
-                <div>实时测试速率</div>
-                <div class="number-style-box">
-                  <span class="number-style">{{showNumber}}</span>
-                  <span class="number-unit">M/S</span>
+                <div class="speed2-title">5G射频实时连接速率</div>
+                <div class="number-style-box" v-if="showNumber!==9.02">
+                  <span class="number-style color-orange">{{showNumber}}</span>
+                  <span class="number-unit">Gbps</span>
+                </div>
+                <div class="speed2-end" v-else>
+                    <div class="speed2-shishi">
+                        整机实时速率 <span class="color-orange">10.02</span> Gbps
+                    </div>
+                    <div class="speed2-shishi2">
+                        1 Gbps@2.4GHz + <span class="color-orange">9.02</span> Gbps@5GHz
+                    </div>
                 </div>
               </div>
-              <div class="speed1">
+              <!-- <div class="speed1">
                 <div>测试速率信息</div>
                 <div class="speed1-number-box">
                    <span class="number-style">{{showNumber}}</span>
                    <span class="number-unit">M/S</span>
                 </div>
-              </div>
+              </div> -->
           </div>
         </div>
       </div>
@@ -93,7 +95,7 @@
 <script>
 // @ is an alias to /src
 import Bar from "../components/Bar";
-import LeiDa from "../components/LeiDa";
+import LeiDa from "../components/LeiDa2";
 import Line1 from "../components/Line1";
 import Line2 from "../components/Line2";
 export default {
@@ -169,37 +171,9 @@ export default {
         width: 11.66rem;
         height: 100%;
         margin-right: 0.1rem;
-        background: url("../assets/img/video_bg.webp") no-repeat;
+        // background: url("../assets/img/video_bg.webp") no-repeat;
+        background: url("http://qf304exbm.hn-bkt.clouddn.com/video_bg.png") no-repeat;
         background-size: 100% 100%;
-        .btns-box {
-          display: flex;
-          position: absolute;
-          bottom: 0.2rem;
-          right: 0.2rem;
-          .btn-com {
-            width: 0.38rem;
-            height: 0.38rem;
-          }
-          .jian {
-            height: 0.39rem;
-            transform: translate(-0.03rem, -0.008rem);
-            background: url("../assets/img/jian.png") no-repeat;
-            background-size: 100% 100%;
-          }
-          .add {
-            background: url("../assets/img/add.png") no-repeat;
-            background-size: 100% 100%;
-          }
-          .home {
-            margin: 0 0.1rem 0 0.07rem;
-            background: url("../assets/img/home.png") no-repeat;
-            background-size: 100% 100%;
-          }
-          .huan {
-            background: url("../assets/img/huan.png") no-repeat;
-            background-size: 100% 100%;
-          }
-        }
       }
       .speed-box {
         display: block;
@@ -208,11 +182,13 @@ export default {
         background: url("../assets/img/speed_bg.png") no-repeat;
         background-size: 100% 100%;
         .speed-echar-box {
-          width: 3.9rem;
+          // width: 3.9rem;
           // height: 2.73rem;
-          margin: .18rem auto 0;
+          width: 4.5rem;
+          margin: .08rem auto 0;
           .lei-da {
-            height: 2.73rem;
+            // height: 2.73rem;
+            height: 3.5rem;
           }
           .go-speed {
             position: relative;
@@ -220,35 +196,69 @@ export default {
             width: 1.5rem;
             height: .455rem;
             margin: -.45rem auto 0;
-            background: url("../assets/img/go_speed.webp") no-repeat;
+            // background: url("../assets/img/go_speed.webp") no-repeat;
+            background: url("http://qf304exbm.hn-bkt.clouddn.com/go_speed.png") no-repeat;
             background-size: 100% 100%;
             cursor: pointer;
           }
         }
         .speed-message {
+          // display: flex;
+          // margin-top: .1rem;
+          // height: 2rem;
+          // padding: 0 .4rem 0 .13rem;
+          // box-sizing: border-box;
           display: flex;
-          margin-top: .1rem;
-          height: 2rem;
-          padding: 0 .4rem 0 .13rem;
+          margin: .1rem auto 0;
+          height: 1.8rem;
+          // padding: 0 .4rem 0 .13rem;
           box-sizing: border-box;
           .speed2 {
+            // flex: 1;
+            // height: 1.6rem;
+            // padding-top: .26rem;
+            // text-align: center;
+            // font-size:0.18rem;
+            // font-weight:400;
+            // color:rgba(255,255,255,1);
+            // border: 1px dashed pink;
+            // box-sizing: border-box;
             flex: 1;
             height: 1.6rem;
-            padding-top: .26rem;
+            padding-top: .16rem;
             text-align: center;
             font-size:0.18rem;
             font-weight:400;
             color:rgba(255,255,255,1);
-            border: 1px dashed pink;
+            // border: 1px dashed pink;
             box-sizing: border-box;
+            .speed2-title {
+              color: #d8c26f;
+              font-weight:500;
+              font-size:0.22rem;
+            }
             .number-style-box {
-              margin-top: .3rem;
+              margin-top: .25rem;
               text-align: center;
               .number-style {
                 font-size: .5rem;
                 margin-right: .05rem;
               }
             }
+            .speed2-end {
+              margin-top: .25rem;
+            }
+            .speed2-shishi, .speed2-shishi2 {
+              font-weight:500;
+              text-align: center;
+            }
+            .speed2-shishi {
+              margin-bottom: .1rem;
+            }
+            .color-orange {
+              color: #d8c26f;
+            }
+
           }
           .speed1 {
             padding: .1rem;

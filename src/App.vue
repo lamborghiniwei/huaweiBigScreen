@@ -99,7 +99,8 @@ body {
   height: 10.8rem;
   left: 0;
   top: 0;
-  background: url("./assets/img/bg.jpg") no-repeat;
+  // background: url("./assets/img/bg.jpg") no-repeat;
+  background: url("http://qf304exbm.hn-bkt.clouddn.com/bg.jpg") no-repeat;
   background-size: 100% 100%;
   overflow: hidden;
   // user-select:none;
