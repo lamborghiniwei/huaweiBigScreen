@@ -13,6 +13,10 @@ import './assets/js/rem'
 
 import './assets/js/Date'
 
+import VueAliplayerV2 from 'vue-aliplayer-v2'
+
+Vue.use(VueAliplayerV2)
+
 Vue.config.productionTip = false;
 
 new Vue({

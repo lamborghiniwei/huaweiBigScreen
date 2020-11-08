@@ -8,7 +8,11 @@
     <!-- 主体内容部分 -->
     <div class="main-box">
       <div class="video-speed-box">
-        <div class="video-box"></div>
+        <div class="video-box">
+          <div class="video-container" style="height: 100%">
+            <v-video-player />
+          </div>
+        </div>
         <div class="speed-box">
           <div class="top-title top-title4">5G射频实时联接速率</div>
           <div class="speed-echar-box">
@@ -104,18 +108,20 @@ const _data860 = {
   list1: [16, 18, 28, 42, 42, 38, 36],
   list2: [16, 15, 17, 16, 18, 16, 15]
 };
-const _data902Number = [9.02, 8.80, 9.20, 9.05, 9.02];
-const _data860Number = [8.60, 8.40, 8.80, 8.70, 8.60];
+const _data902Number = [9.02, 8.8, 9.2, 9.05, 9.02];
+const _data860Number = [8.6, 8.4, 8.8, 8.7, 8.6];
 // @ is an alias to /src
 import Bar from "../components/Bar";
 import Line1 from "../components/Line1";
 import Line2 from "../components/Line2";
+import VideoPlayer from "../components/VideoPlayer";
 export default {
   name: "Home",
   components: {
     "v-bar": Bar,
     "v-line1": Line1,
-    "v-line2": Line2
+    "v-line2": Line2,
+    "v-video-player": VideoPlayer
   },
   data() {
     return {
@@ -130,7 +136,9 @@ export default {
       showNumber: 0,
       indexFlag: 0,
       timer: null,
-      timeList: []
+      timer2: null,
+      timeList: [],
+      isClick: false
     };
   },
   mounted() {
@@ -154,21 +162,28 @@ export default {
     initDataChange() {
       const temp = [];
       const startTime = new Date().format("yyyy/MM/dd hh:mm:ss");
-      for(let i = 0; i<7; i++) {
-          // console.log(i, startTime.format("yyyy/MM/dd hh:mm:ss"), startTime.add("s", i).format("yyyy/MM/dd hh:mm:ss"))
-          temp.push(new Date(startTime).add("s", i).format("yyyy/MM/dd hh:mm:ss"));
+      for (let i = 0; i < 7; i++) {
+        // console.log(i, startTime.format("yyyy/MM/dd hh:mm:ss"), startTime.add("s", i).format("yyyy/MM/dd hh:mm:ss"))
+        temp.push(
+          new Date(startTime).add("s", i).format("yyyy/MM/dd hh:mm:ss")
+        );
       }
-      console.log(temp);
-      setTimeout(() => {
+      if (this.timer) {
+        clearInterval(this.timer);
+        this.timer = null;
+      }
+      if (this.timer2) {
+        clearTimeout(this.timer2);
+        this.timer2 = null;
+      }
+      this.timer2 = setTimeout(() => {
         this.initCount();
         this.timer = setInterval(() => {
           this.initCount();
           if (this.indexFlag === 5) {
             clearInterval(this.timer);
             this.timer = null;
-            this.listData =  this.NumberFlag === 9.02
-              ? _data902
-              : _data860;
+            this.listData = this.NumberFlag === 9.02 ? _data902 : _data860;
             this.timeList = [...temp];
           }
         }, 500);
@@ -176,10 +191,19 @@ export default {
     },
 
     handleSpeed(num) {
-      this.indexFlag = 0;
-      this.NumberFlag = num;
-      this.showNumber = 0;
-      this.initDataChange();
+      //  函数防抖
+      if (this.isClick) return;
+      this.isClick = true;
+      setTimeout(() => {
+        this.isClick = false;
+      }, 4000);
+      this.NumberFlag = 0;
+      setTimeout(() => {
+        this.indexFlag = 0;
+        this.NumberFlag = num;
+        this.showNumber = 0;
+        this.initDataChange();
+      });
     },
     changeShowNumber(num) {
       this.showNumber = num;
@@ -237,7 +261,8 @@ export default {
         height: 100%;
         margin-right: 0.1rem;
         // background: url("../assets/img/video_bg.png") no-repeat;
-        background: url("https://lzw-041102.oss-cn-hangzhou.aliyuncs.com/video_bg.png") no-repeat;
+        background: url("https://lzw-041102.oss-cn-hangzhou.aliyuncs.com/video_bg.png")
+          no-repeat;
         background-size: 100% 100%;
       }
       .speed-box {
@@ -254,7 +279,8 @@ export default {
             width: 4rem;
             height: 4rem;
             // background: url("../assets/img/ybp.png") no-repeat;
-            background: url("https://lzw-041102.oss-cn-hangzhou.aliyuncs.com/ybp.png") no-repeat;
+            background: url("https://lzw-041102.oss-cn-hangzhou.aliyuncs.com/ybp.png")
+              no-repeat;
             // background: url("../assets/img/ybp.webp") no-repeat;
             background-size: 100% 100%;
             .point {
